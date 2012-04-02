@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'MobileID login' /}
+
+<script type="text/javascript">
+  $(function() {
+    $("#mid").submit();
+  });
+</script>
+
+<div class="container">
+  <h1>MobileID login</h1>
+
+  <span class="label label-warning">Challenge: ${challenge}</span>
+
+  <form id="mid" method="POST" action="@{Login.mid}">
+    <input type="hidden" name="phone" value="${phone}"/>
+  </form>
+</div>

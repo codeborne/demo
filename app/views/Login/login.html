@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'Login' /}
+
+<div class="container">
+  <h1>Login</h1>
+
+  #{if error}
+    <div class="alert alert-error">${error}</div>
+  #{/if}
+
+  <form class="well" method="POST" action="@{Login.startMid}">
+    <label>Phone number</label>
+    <input name="phone" value="+372"/>
+    <br/>
+    <button type="submit" class="btn">Login</button>
+  </form>
+</div>

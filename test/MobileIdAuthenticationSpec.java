@@ -21,7 +21,7 @@ public class MobileIdAuthenticationSpec extends UnitTest {
 
   @Before
   public void gotoDashboard() {
-    open("/");
+    open("/user/logout");
     click(By.linkText("Log in"));
   }
 
@@ -39,13 +39,13 @@ public class MobileIdAuthenticationSpec extends UnitTest {
     waitFor(By.className("alert-error"), hasText("NO_AGREEMENT: User is not a Mobile-ID client"));
   }
 
-  @Test @Ignore
+  @Test
   public void userGetsSmsAndEntersPassword() {
     setValue(By.name("phone"), "+37259180809");
     click(By.tagName("button"));
-    waitFor(By.id("challenge"), visible, 10000);
+    waitFor(By.id("challenge"), visible);
     waitFor(By.id("welcomeMessage"));
-    assertElement(By.id("userName"), hasText("User: Andrei Solntsev"));
-    assertElement(By.id("personalCode"), hasText("Personal code: 38106080282"));
+    assertElement(By.id("userName"), hasText("Hello, Tõnis Jäägup!"));
+    assertElement(By.id("personalCode"), hasText("Personal code: 37612310010"));
   }
 }

@@ -8,8 +8,9 @@
 #{if userName}
 <div class="container">
   <h1>MobileID login</h1>
-  <div id="userName" class="label label-success">Name: ${userName}</div>
+  <div id="userName" class="label label-success">Hello, ${userName}!</div>
   <div id="personalCode" class="label label-success">Personal code: ${personalCode}</div>
+  <div class="label">Chuck Norris is following you!</div>
 
   #{a @User.logout()}Logout#{/a}
 </div>

@@ -3,7 +3,11 @@
 
 <script type="text/javascript">
   $(function() {
-    $("#mid").submit();
+    //$("#mid").submit();
+    $.get( "@{User.completeMid}", "", function(data) {
+        window.location = "/";
+      }
+    );
   });
 </script>
 

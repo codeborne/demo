@@ -3,16 +3,19 @@ package controllers;
 import com.codeborne.security.AuthenticationException;
 import com.codeborne.security.mobileid.MobileIDAuthenticator;
 import com.codeborne.security.mobileid.MobileIDSession;
-import play.*;
-import play.cache.Cache;
+import com.codeborne.security.mobileid.test.MobileIDAuthenticatorStub;
+import play.Play;
 import play.data.validation.Validation;
-import play.mvc.*;
+import play.mvc.Controller;
 
 import java.io.File;
+
+import com.codeborne.security.mobileid.test.MobileIDAuthenticatorStub;
 
 public class User extends Controller {
 
   static MobileIDAuthenticator mid = new MobileIDAuthenticator("https://www.openxades.org:8443/");
+//  static MobileIDAuthenticator mid = new MobileIDAuthenticatorStub();
 
   static {
     System.setProperty("javax.net.ssl.trustStore", new File("keystore.jks").getAbsolutePath());

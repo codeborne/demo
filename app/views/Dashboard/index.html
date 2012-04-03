@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{if userName}
+<div class="container">
+  <h1>MobileID login</h1>
+  <div class="label label-success">Name: ${userName}</div>
+  <div class="label label-success">Personal code: ${personalCode}</div>
+
+  #{a @User.logout()}Logout#{/a}
+</div>
+#{/if}
+#{else}
+  Not logged in.
+  #{a @User.login()} Log in#{/a}
+#{/else}

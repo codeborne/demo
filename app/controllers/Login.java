@@ -18,11 +18,11 @@ public class Login extends Controller {
   public static void startMid(String phone) {
     try {
       MobileIDSession mobileIDSession = mid.startLogin(phone);
-      Cache.set(session.getId(), mobileIDSession);
+      session.put("mobileid-session", mobileIDSession);
+
       String challenge = mobileIDSession.challenge;
       render(challenge);
-    }
-    catch (AuthenticationException e) {
+    } catch (AuthenticationException e) {
       String error = e.getMessage();
       params.flash(); // add http parameters to the flash scope
       validation.keep(); // keep the errors for the next request
@@ -31,20 +31,20 @@ public class Login extends Controller {
   }
 
   public static void mid() {
-      try {
-        MobileIDSession mobileIDSession = (MobileIDSession) Cache.get(session.getId());
-        mid.waitForLogin(mobileIDSession);
-        String firstName = mobileIDSession.firstName;
-        String lastName = mobileIDSession.lastName;
-        String personalCode = mobileIDSession.personalCode;
-        render(firstName, lastName, personalCode);
-      }
-      catch (AuthenticationException e) {
-        String error = e.getMessage();
-        params.flash(); // add http parameters to the flash scope
-        validation.keep(); // keep the errors for the next request
-        login(error);
-      }
+    try {
+      MobileIDSession mobileIDSession = MobileIDSession.fromString(session.get("mobileid-session"));
+      mid.waitForLogin(mobileIDSession);
+      String firstName = mobileIDSession.firstName;
+      String lastName = mobileIDSession.lastName;
+      String personalCode = mobileIDSession.personalCode;
+      render(firstName, lastName, personalCode);
+      session.remove("mobileid-session");
+    } catch (AuthenticationException e) {
+      String error = e.getMessage();
+      params.flash(); // add http parameters to the flash scope
+      validation.keep(); // keep the errors for the next request
+      login(error);
     }
+  }
 
 }

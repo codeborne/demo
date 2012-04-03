@@ -1,11 +1,15 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
+<h1 id="welcomeMessage">
+  Hello Mobile-ID world!
+</h1>
+
 #{if userName}
 <div class="container">
   <h1>MobileID login</h1>
-  <div class="label label-success">Name: ${userName}</div>
-  <div class="label label-success">Personal code: ${personalCode}</div>
+  <div id="userName" class="label label-success">Name: ${userName}</div>
+  <div id="personalCode" class="label label-success">Personal code: ${personalCode}</div>
 
   #{a @User.logout()}Logout#{/a}
 </div>

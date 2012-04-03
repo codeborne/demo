@@ -10,7 +10,7 @@
 <div class="container">
   <h1>MobileID login</h1>
 
-  <span class="label label-warning">Challenge: ${challenge}</span>
+  <span id="challenge" class="label label-warning">Challenge: ${challenge}</span>
 
   <form id="mid" method="POST" action="@{User.completeMid}">
     <input type="hidden" name="phone" value="${phone}"/>

@@ -1,15 +1,16 @@
 <project xmlns:ivy="antlib:org.apache.ivy.ant" name="mobi">
 
   <target name="import-certificates">
+    <delete file="keystore.jks"/>
     <exec executable="openssl" inputstring="" output="/tmp/openxades.cert">
       <arg line="s_client -showcerts -connect www.openxades.org:8443"/>
     </exec>
     <exec executable="openssl" inputstring="">
       <arg line="x509 -outform der -in /tmp/openxades.cert -out /tmp/openxades.der"/>
     </exec>
-    <exec executable="keytool" inputstring="">
+    <!--<exec executable="keytool" inputstring="">
       <arg line="-delete -alias openxades -keystore keystore.jks -storepass changeit"/>
-    </exec>
+    </exec>-->
     <exec executable="keytool" inputstring="yes">
       <arg line="-importcert -alias openxades -file /tmp/openxades.der -keystore keystore.jks -trustcacerts -storepass changeit"/>
     </exec>

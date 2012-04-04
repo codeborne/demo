@@ -4,14 +4,18 @@ Mobi
 Demo project for demonstrating Mobile-ID and Selenide functionality.
 
 
-
 How to run from IDE
 =========
-Run java class play.server.Server
-with the following parameters:
--javaagent:/home/andrei/programs/play-1.2.4/framework/play-1.2.4.jar
--XX:-UseSplitVerifier
--Dfile.encoding=utf-8
--Dplay.debug=yes
--Dapplication.path=/home/andrei/Dropbox/projects/mobi
--Djavax.net.ssl.trustStore=keystore.jks
+Make sure you have play 1.2.4 installed in ${PLAY_HOME}
+
+Run
+    play idealize
+or
+    play eclipsify
+
+Run java class *play.server.Server* with the following parameters:
+    -javaagent:${PLAY_HOME}/framework/play-1.2.4.jar
+    -XX:-UseSplitVerifier
+    -Dplay.debug=yes
+    -Dapplication.path=.
+    -Djavax.net.ssl.trustStore=keystore.jks

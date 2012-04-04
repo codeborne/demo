@@ -1,0 +1,5 @@
+*.iml
+precompiled
+test-result
+tmp
+logs/*

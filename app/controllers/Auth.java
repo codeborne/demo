@@ -7,7 +7,7 @@ import play.Play;
 import play.mvc.Catch;
 import play.mvc.Controller;
 
-public class User extends Controller {
+public class Auth extends Controller {
     static {
         // need to specify a custom truststore with SK root cert in it, otherwise https requests won't work
         System.setProperty("javax.net.ssl.trustStore", "conf/keystore.jks");

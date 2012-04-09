@@ -4,7 +4,7 @@
 <script type="text/javascript">
   $(function() {
     //$("#mid").submit();
-    $.get( "@{User.completeMid}", "", function(data) {
+    $.get( "@{Auth.completeMid}", "", function(data) {
         window.location = "/";
       }
     );
@@ -16,7 +16,7 @@
 
   <span id="challenge" class="label label-warning">Challenge: ${challenge}</span>
 
-  <form id="mid" method="POST" action="@{User.completeMid}">
+  <form id="mid" method="POST" action="@{Auth.completeMid}">
     <input type="hidden" name="phone" value="${phone}"/>
   </form>
 </div>

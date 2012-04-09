@@ -12,10 +12,10 @@
   <div id="personalCode" class="label label-success">Personal code: ${personalCode}</div>
   <div class="label">Chuck Norris is following you!</div>
 
-  #{a @User.logout()}Logout#{/a}
+  #{a @Auth.logout()}Logout#{/a}
 </div>
 #{/if}
 #{else}
   Not logged in.
-  #{a @User.login()} Log in#{/a}
+  #{a @Auth.login()}Log in#{/a}
 #{/else}

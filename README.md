@@ -27,4 +27,3 @@ Run java class **play.server.Server** with the following parameters:
     -XX:-UseSplitVerifier
     -Dplay.debug=yes
     -Dapplication.path=.
-    -Djavax.net.ssl.trustStore=keystore.jks

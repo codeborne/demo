@@ -2,16 +2,16 @@
 #{set title:'Login' /}
 
 <div class="container">
-  <h1>Login</h1>
+    <h1>Login</h1>
 
-  #{if error}
-    <div class="alert alert-error">${error}</div>
-  #{/if}
+    #{errors}
+        <div class="alert alert-error">${error}</div>
+    #{/errors}
 
-  <form class="well" method="POST" action="@{User.startMid}">
-    <label>Phone number</label>
-    <input name="phone" value="+372"/>
-    <br/>
-    <button type="submit" class="btn">Login</button>
-  </form>
+    #{form @User.startMid(), class:'well'}
+        <label>Phone number</label>
+        <input name="phone" value="+372"/>
+        <br/>
+        <button type="submit" class="btn">Login</button>
+    #{/form}
 </div>

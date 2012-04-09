@@ -1,21 +1,22 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
 
 <h1 id="welcomeMessage">
-  Hello Mobile-ID world!
+    Hello Mobile-ID world!
 </h1>
 
 #{if userName}
-<div class="container">
-  <h1>MobileID login</h1>
-  <div id="userName" class="label label-success">Hello, ${userName}!</div>
-  <div id="personalCode" class="label label-success">Personal code: ${personalCode}</div>
-  <div class="label">Chuck Norris is following you!</div>
+    <div class="alert alert-block alert-success">
+        <strong id="userName">Welcome, ${userName}!</strong>
+        <div id="personalCode">Personal code: ${personalCode}</div>
+    </div>
 
-  #{a @Auth.logout()}Logout#{/a}
-</div>
+    <div class="alert alert-block alert-danger">
+        Chuck Norris is now following you!
+    </div>
+
+    #{a @Auth.logout(), class:'btn'}Get out!#{/a}
 #{/if}
 #{else}
-  Not logged in.
-  #{a @Auth.login()}Log in#{/a}
+    Not logged in.
+    #{a @Auth.form()}Log in#{/a}
 #{/else}

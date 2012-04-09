@@ -19,28 +19,28 @@ public class Auth extends Controller {
     public static void handleMidFailure(AuthenticationException e) {
         validation.addError("phone", e.getMessage());
         validation.keep();
-        login();
+        form();
     }
 
-    public static void login() {
+    public static void form() {
         render();
     }
 
-    public static void startMid(String phone) {
-        MobileIDSession mobileIDSession = mid.startLogin(phone);
-        session.put("mobileid-session", mobileIDSession);
+    public static void startLogin(String phone) {
+        MobileIDSession midSession = mid.startLogin(phone);
+        session.put("mid-session", midSession);
 
-        String challenge = mobileIDSession.challenge;
+        String challenge = midSession.challenge;
         render(challenge);
     }
 
-    public static void completeMid() {
-        MobileIDSession mobileIDSession = MobileIDSession.fromString(session.get("mobileid-session"));
-        mid.waitForLogin(mobileIDSession);
-        session.put("userName", mobileIDSession.firstName + " " + mobileIDSession.lastName);
-        session.put("personalCode", mobileIDSession.personalCode);
+    public static void completeLogin() {
+        MobileIDSession midSession = MobileIDSession.fromString(session.get("mid-session"));
+        mid.waitForLogin(midSession);
+        session.put("userName", midSession.firstName + " " + midSession.lastName);
+        session.put("personalCode", midSession.personalCode);
+        session.remove("mid-session");
         Dashboard.index();
-        session.remove("mobileid-session");
     }
 
     public static void logout() {

@@ -1,0 +1,17 @@
+#{extends 'main.html'/}
+#{set title:'Login'/}
+
+<h1>Mobile-ID</h1>
+
+#{errors}
+    <div class="alert alert-error">${error}</div>
+#{/errors}
+
+#{form @Auth.startLogin(), class:'well'}
+    <label>
+        Phone number
+        <input name="phone" value="+372"/>
+    </label>
+
+    <button type="submit" class="btn btn-success">Login</button>
+#{/form}

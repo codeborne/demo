@@ -1,16 +1,12 @@
-import com.codeborne.selenide.Condition;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import play.test.UnitTest;
 
-import static com.codeborne.selenide.Condition.hasText;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.DOM.*;
-import static com.codeborne.selenide.Navigation.baseUrl;
-import static com.codeborne.selenide.Navigation.open;
+import static com.codeborne.selenide.Navigation.*;
 
 public class MobileIdAuthenticationSpec extends UnitTest {
 
@@ -21,7 +17,7 @@ public class MobileIdAuthenticationSpec extends UnitTest {
 
   @Before
   public void gotoDashboard() {
-    open("/user/logout");
+    open("/auth/logout");
     click(By.linkText("Log in"));
   }
 
@@ -45,7 +41,7 @@ public class MobileIdAuthenticationSpec extends UnitTest {
     click(By.tagName("button"));
     waitFor(By.id("challenge"), visible);
     waitFor(By.id("welcomeMessage"));
-    assertElement(By.id("userName"), hasText("Hello, Tõnis Jäägup!"));
-    assertElement(By.id("personalCode"), hasText("Personal code: 37612310010"));
+    assertElement(By.id("userName"), hasText("Tõnis Jäägup"));
+    assertElement(By.id("personalCode"), hasText("37612310010"));
   }
 }

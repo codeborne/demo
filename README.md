@@ -1,7 +1,7 @@
 Mobi
 =========
 
-Demo project for demonstrating Mobile-ID and Selenide functionality.
+Demo project for demonstrating [Mobile-ID](http://github.com/codeborne/mobileid) and [Selenide](http://github.com/codeborne/selenide) functionality.
 
 
 How to run from IDE

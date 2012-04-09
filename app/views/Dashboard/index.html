@@ -14,9 +14,11 @@
         Chuck Norris is now following you!
     </div>
 
-    #{a @Auth.logout(), class:'btn'}Get out!#{/a}
+    #{a @Auth.logout(), class:'btn btn-danger'}Get out!#{/a}
 #{/if}
 #{else}
-    Not logged in.
-    #{a @Auth.form()}Log in#{/a}
+    <div class="alert">
+        Not logged in.
+        #{a @Auth.form()}Log in#{/a}
+    </div>
 #{/else}

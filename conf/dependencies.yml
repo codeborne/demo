@@ -3,7 +3,7 @@
 require:
     - play
     - com.codeborne -> mobileid 0.9.4
-    - com.codeborne -> selenide 1.3-SNAPSHOT
+    - com.codeborne -> selenide 1.3
 
 repositories:
     - oss.sonatype.org:
@@ -13,6 +13,6 @@ repositories:
             - com.codeborne -> mobileid
     - snapshots@oss.sonatype.org-:
         type: iBiblio
-        root: "https://oss.sonatype.org/content/repositories/snapshots/"
+        root: "https://oss.sonatype.org/content/repositories/comcodeborne-263/"
         contains:
             - com.codeborne -> selenide

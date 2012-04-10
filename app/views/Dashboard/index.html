@@ -32,10 +32,37 @@
 
 <div class="space"></div>
 <div class="space">
-  <h1>We use Java in most projects</h1>
+  <h1>We use JVM languages in most our projects</h1>
 </div>
 <div class="space">
-  <h1>We create automated tests</h1>
+  <h1>We often do projects for Estonian customers</h1>
+  <h2>Who have special login requirements</h2>
+  <h2 style="margin-left: 350px">e.g. Banklink, ID card, Mobile-ID</h2>
+</div>
+<div class="space">
+  <h1>So, we decided to make Java developer's life easier</h1>
+  <h2>by providing open-source implementations of these login methods</h2>
+</div>
+<div class="space">
+  <h1>We started with <a href="http://github.com/codeborne/mobileid">github.com/codeborne/mobileid</a></h1>
+  <h3>(which will eventually become a more general login support Java library)</h3>
+
+  <br>
+  <br>
+
+  <pre>
+
+    // As easy as 1-2-3
+
+    mid = new <b>MobileAuthenticator</b>();
+
+    session = mid.<b>startLogin</b>();
+
+    mid.<b>waitForLogin</b>(session);
+  </pre>
+</div>
+<div class="space">
+  <h1>We also create automated tests</h1>
 </div>
 <div class="space">
   <h1>We do TDD</h1>
@@ -48,6 +75,9 @@
 </div>
 <div class="space">
   <h1>We run UI Tests in all browsers</h1>
+  <h2>&gt; ant uitest-firefox</h2>
+  <h2>&gt; ant uitest-ie</h2>
+  <h2>&gt; ant uitest</h2>
 </div>
 <div class="space">
   <h1>Our religion is CLEAN CODE</h1>
@@ -57,21 +87,18 @@
 </div>
 <div class="space">
   <h1>Selenium + API = SELENIDE</h1>
+  <h3><a href="http://github.com/codeborne/selenide">github.com/codeborne/selenide</a></h3>
 
-  <br/>
-
-  <a href="https://github.com/codeborne/selenide"><h2>github.com/codeborne/selenide</h2></a>
-
-  <br/>
-  <br/>
+  <br>
+  <br>
 
   <pre>
     @Test
-    public void testLogin() {
-      open("/login");
-      setValue(By.name("user.name"), "johny");
-      followLink(By.id("submit"));
-      waitUntil(By.id("username", hasText("Hello, Johny!"));
+    public void userCanLogin() {
+      <b>open</b>("/login");
+      <b>setValue</b>(By.name("user.name"), "johnny");
+      <b>followLink</b>(By.id("submit"));
+      <b>waitUntil</b>(By.id("username", <b>hasText</b>("Hello, Johnny!"));
     }
   </pre>
 </div>

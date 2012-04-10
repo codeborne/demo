@@ -2,13 +2,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import play.test.UnitTest;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.DOM.*;
 import static com.codeborne.selenide.Navigation.*;
 
-public class MobileIdAuthenticationSpec extends UnitTest {
+public class MobileIdAuthenticationSpec {
 
   @BeforeClass
   public static void configureBaseUrl() {
@@ -37,11 +36,12 @@ public class MobileIdAuthenticationSpec extends UnitTest {
 
   @Test
   public void userGetsSmsAndEntersPassword() {
-    setValue(By.name("phone"), "+37259180809");
+    // MID test numbers from http://www.openxades.org/dds_test_phone_numbers.html
+    setValue(By.name("phone"), "+37200007");
     click(By.tagName("button"));
     waitFor(By.id("challenge"), visible);
-    waitFor(By.id("welcomeMessage"));
-    assertElement(By.id("userName"), hasText("Tõnis Jäägup"));
-    assertElement(By.id("personalCode"), hasText("37612310010"));
+    waitFor(By.id("welcomeMessage"), visible, 30000);
+    assertElement(By.id("userName"), hasText("SEITSMES TESTNUMBER"));
+    assertElement(By.id("personalCode"), hasText("14212128025"));
   }
 }

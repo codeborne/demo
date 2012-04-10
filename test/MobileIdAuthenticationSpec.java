@@ -24,14 +24,14 @@ public class MobileIdAuthenticationSpec {
   public void userShouldEnterValidMobileNumber() {
     setValue(By.name("phone"), "+372");
     click(By.tagName("button"));
-    waitFor(By.className("alert-error"), hasText("INVALID_INPUT: Invalid PhoneNo"));
+    waitUntil(By.className("alert-error"), hasText("INVALID_INPUT: Invalid PhoneNo"));
   }
 
   @Test
   public void userShouldHaveMobileIDAgreement() {
     setValue(By.name("phone"), "+37255667788");
     click(By.tagName("button"));
-    waitFor(By.className("alert-error"), hasText("NO_AGREEMENT: User is not a Mobile-ID client"));
+    waitUntil(By.className("alert-error"), hasText("NO_AGREEMENT: User is not a Mobile-ID client"));
   }
 
   @Test
@@ -39,8 +39,8 @@ public class MobileIdAuthenticationSpec {
     // MID test numbers from http://www.openxades.org/dds_test_phone_numbers.html
     setValue(By.name("phone"), "+37200007");
     click(By.tagName("button"));
-    waitFor(By.id("challenge"), visible);
-    waitFor(By.id("welcomeMessage"), visible, 30000);
+    waitFor(By.id("challenge"));
+    waitUntil(By.id("welcomeMessage"), visible, 30000);
     assertElement(By.id("userName"), hasText("SEITSMES TESTNUMBER"));
     assertElement(By.id("personalCode"), hasText("14212128025"));
   }

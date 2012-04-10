@@ -1,5 +1,12 @@
 #{extends 'main.html' /}
 
+<style type="text/css">
+  .space {
+    margin-top: 300px;
+    height: 300px;
+  }
+</style>
+
 <h1 id="welcomeMessage">
     Hello Mobile-ID world!
 </h1>
@@ -22,3 +29,50 @@
         #{a @Auth.form()}Log in#{/a}
     </div>
 #{/else}
+
+<div class="space"></div>
+<div class="space">
+  <h1>We use Java in most projects</h1>
+</div>
+<div class="space">
+  <h1>We create automated tests</h1>
+</div>
+<div class="space">
+  <h1>We do TDD</h1>
+</div>
+<div class="space">
+  <h1>Developers create tests</h1>
+</div>
+<div class="space">
+  <h1>We put tests to VCS</h1>
+</div>
+<div class="space">
+  <h1>We run UI Tests in all browsers</h1>
+</div>
+<div class="space">
+  <h1>Our religion is CLEAN CODE</h1>
+</div>
+<div class="space">
+  <h1>We need concise API for UI Tests</h1>
+</div>
+<div class="space">
+  <h1>Selenium + API = SELENIDE</h1>
+
+  <br/>
+
+  <a href="https://github.com/codeborne/selenide"><h2>github.com/codeborne/selenide</h2></a>
+
+  <br/>
+  <br/>
+
+  <pre>
+    @Test
+    public void testLogin() {
+      open("/login");
+      setValue(By.name("user.name"), "johny");
+      followLink(By.id("submit"));
+      waitUntil(By.id("username", hasText("Hello, Johny!"));
+    }
+  </pre>
+</div>
+<div class="space"></div>

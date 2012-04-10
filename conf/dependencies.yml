@@ -2,7 +2,7 @@
 
 require:
     - play
-    - com.codeborne -> mobileid 0.9.3-SNAPSHOT
+    - com.codeborne -> mobileid 0.9.5-SNAPSHOT
     - com.codeborne -> selenide 1.3-SNAPSHOT
 
 repositories:

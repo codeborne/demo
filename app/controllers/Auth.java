@@ -4,6 +4,7 @@ import com.codeborne.security.AuthenticationException;
 import com.codeborne.security.mobileid.MobileIDAuthenticator;
 import com.codeborne.security.mobileid.MobileIDSession;
 import play.Play;
+import play.data.validation.Validation;
 import play.mvc.Catch;
 import play.mvc.Controller;
 
@@ -15,10 +16,10 @@ public class Auth extends Controller {
 
     static MobileIDAuthenticator mid = new MobileIDAuthenticator(Play.configuration.getProperty("digidoc.url"));
 
-    @Catch(AuthenticationException.class)
+    @Catch(Throwable.class)
     public static void handleMidFailure(AuthenticationException e) {
-        validation.addError("phone", e.getMessage());
-        validation.keep();
+        Validation.addError("phone", e.getMessage());
+        Validation.keep();
         form();
     }
 

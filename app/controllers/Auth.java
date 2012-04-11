@@ -20,14 +20,21 @@ public class Auth extends Controller {
 
       Logger.info("Use digidoc url " + Play.configuration.getProperty("digidoc.url"));
       Logger.info("Read certificates from " + keystore.getAbsolutePath());
-      System.setProperty("sun.security.ssl.allowUnsafeRenegotiation", "true");
       System.setProperty("javax.net.ssl.trustStore", keystore.getAbsolutePath());
     }
 
     static MobileIDAuthenticator mid = new MobileIDAuthenticator(Play.configuration.getProperty("digidoc.url"));
 
-    @Catch(Throwable.class)
+    @Catch(AuthenticationException.class)
     public static void handleMidFailure(AuthenticationException e) {
+        Logger.info(e, e.getMessage());
+        Validation.addError("phone", e.getMessage());
+        Validation.keep();
+        form();
+    }
+
+    @Catch(Throwable.class)
+    public static void handleAllExceptions(AuthenticationException e) {
         Logger.error(e, e.getMessage());
         Validation.addError("phone", e.getMessage());
         Validation.keep();

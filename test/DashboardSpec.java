@@ -14,7 +14,7 @@ public class DashboardSpec extends UnitTest {
 
   @BeforeClass
   public static void configureBaseUrl() {
-    baseUrl = "http://localhost:9000";
+    baseUrl = "http://localhost:9090";
   }
 
   @Before

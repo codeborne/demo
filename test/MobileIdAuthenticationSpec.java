@@ -9,9 +9,11 @@ import static com.codeborne.selenide.Navigation.*;
 
 public class MobileIdAuthenticationSpec {
 
+  private static final int MID_TIMEOUT = 10000;
+
   @BeforeClass
   public static void configureBaseUrl() {
-    baseUrl = "http://localhost:9000";
+    baseUrl = "http://localhost:9090";
   }
 
   @Before
@@ -40,8 +42,16 @@ public class MobileIdAuthenticationSpec {
     setValue(By.name("phone"), "+37200007");
     click(By.tagName("button"));
     waitFor(By.id("challenge"));
-    waitUntil(By.id("welcomeMessage"), visible, 30000);
+    waitUntil(By.id("welcomeMessage"), visible, MID_TIMEOUT);
     assertElement(By.id("userName"), hasText("SEITSMES TESTNUMBER"));
     assertElement(By.id("personalCode"), hasText("14212128025"));
+  }
+
+  @Test
+  public void userCanCancelLogin() {
+    setValue(By.name("phone"), "+37200004");
+    click(By.tagName("button"));
+    waitFor(By.id("challenge"));
+    waitUntil(By.className("alert-error"), hasText("USER_CANCEL"), MID_TIMEOUT);
   }
 }

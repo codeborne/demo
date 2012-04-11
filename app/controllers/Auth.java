@@ -18,7 +18,9 @@ public class Auth extends Controller {
       if (!keystore.exists())
         throw new RuntimeException("File not found: " + keystore.getAbsolutePath());
 
+      Logger.info("Use digidoc url " + Play.configuration.getProperty("digidoc.url"));
       Logger.info("Read certificates from " + keystore.getAbsolutePath());
+      System.setProperty("sun.security.ssl.allowUnsafeRenegotiation", "true");
       System.setProperty("javax.net.ssl.trustStore", keystore.getAbsolutePath());
     }
 

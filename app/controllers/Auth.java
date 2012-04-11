@@ -14,8 +14,12 @@ import java.io.File;
 public class Auth extends Controller {
     static {
         // need to specify a custom truststore with SK root cert in it, otherwise https requests won't work
-        Logger.info("Read certificates from " + new File("conf", "keystore.jks").getAbsolutePath());
-        System.setProperty("javax.net.ssl.trustStore", new File("conf", "keystore.jks").getAbsolutePath());
+      File keystore = new File("conf", "keystore.jks");
+      if (!keystore.exists())
+        throw new RuntimeException("File not found: " + keystore.getAbsolutePath());
+
+      Logger.info("Read certificates from " + keystore.getAbsolutePath());
+      System.setProperty("javax.net.ssl.trustStore", keystore.getAbsolutePath());
     }
 
     static MobileIDAuthenticator mid = new MobileIDAuthenticator(Play.configuration.getProperty("digidoc.url"));

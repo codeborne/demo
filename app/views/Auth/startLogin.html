@@ -2,15 +2,30 @@
 
 <script type="text/javascript">
     $(function() {
-        $.get('@{Auth.completeLogin}', '', function (data) {
-            window.location = "/";
-        });
+      $.getJSON( '@{Auth.completeLogin}', '',
+          function(data, textStatus) {
+            if ("ok" == data.status) {
+              window.location = "/";
+            }
+            else {
+              $("#challengeContainer").fadeOut('slow');
+              $("<div class='alert alert-error'>"+data.description+"</div>").appendTo($("#errors"));
+              $("#loginFailed").fadeIn('slow');
+              setTimeout('window.location = "/auth/form"', 9000);
+            }
+          }
+      );
     });
 </script>
 
 <h1>Mobile-ID login</h1>
 
-<div class="alert alert-block">
+<div id="loginFailed" style="display: none;">
+  <div id="errors"></div>
+  #{a @Auth.form()}Log in#{/a}
+</div>
+
+<div id="challengeContainer" class="alert alert-block">
     <h3 id="challenge" class="alert-heading">Challenge: ${challenge}</h3>
     Please make sure you see the same challenge on your mobile screen and then enter the PIN to complete authentication.
 </div>

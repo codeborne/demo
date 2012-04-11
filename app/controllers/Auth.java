@@ -54,12 +54,17 @@ public class Auth extends Controller {
     }
 
     public static void completeLogin() {
+      try {
         MobileIDSession midSession = MobileIDSession.fromString(session.get("mid-session"));
         mid.waitForLogin(midSession);
         session.put("userName", midSession.firstName + " " + midSession.lastName);
         session.put("personalCode", midSession.personalCode);
         session.remove("mid-session");
-        Dashboard.index();
+        renderJSON("{\"status\": \"ok\"}");
+      }
+      catch (Exception e) {
+        renderJSON("{\"status\": \"error\", \"description\": \"" + e.getMessage() + "\"}");
+      }
     }
 
     public static void logout() {

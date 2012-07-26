@@ -72,7 +72,8 @@ public class Auth extends Controller {
       }
     }
 
-    public static void loginWithIdCard(String pem) throws CertificateException {
+    public static void loginWithIdCard() throws CertificateException {
+      String pem = request.headers.get("SSL_CLIENT_CERT").value();
       String base64 = pem.replace(X509Factory.BEGIN_CERT, "").replace(X509Factory.END_CERT, "").replace(" ", "");
       X509Certificate cert = X509Certificate.getInstance(Base64.decodeBase64(base64));
       String personalCode = cert.getSubjectDN().getName().replaceFirst(".*SERIALNUMBER=(\\d{11}),.*", "$1");

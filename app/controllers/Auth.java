@@ -8,8 +8,13 @@ import play.Play;
 import play.data.validation.Validation;
 import play.mvc.Catch;
 import play.mvc.Controller;
+import sun.security.provider.X509Factory;
 
 import java.io.File;
+import org.apache.commons.codec.binary.Base64;
+
+import javax.security.cert.CertificateException;
+import javax.security.cert.X509Certificate;
 
 public class Auth extends Controller {
     static {
@@ -67,7 +72,16 @@ public class Auth extends Controller {
       }
     }
 
-    public static void logout() {
+    public static void loginWithIdCard(String pem) throws CertificateException {
+      String base64 = pem.replace(X509Factory.BEGIN_CERT, "").replace(X509Factory.END_CERT, "").replace(" ", "");
+      X509Certificate cert = X509Certificate.getInstance(Base64.decodeBase64(base64));
+      String personalCode = cert.getSubjectDN().getName().replaceFirst(".*SERIALNUMBER=(\\d{11}),.*", "$1");
+      session.put("userName", cert.getSubjectDN().getName());
+      session.put("personalCode", personalCode);
+      Dashboard.index();
+    }
+
+  public static void logout() {
         session.remove("userName");
         session.remove("personalCode");
         Dashboard.index();

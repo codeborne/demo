@@ -1,19 +1,24 @@
 <project xmlns:ivy="antlib:org.apache.ivy.ant" name="mobi">
 
+  <property name="tmpdir" value="${java.io.tmpdir}/${user.name}/${ant.project.name}" />
   <target name="import-certificates">
+    <mkdir dir="${tmpdir}"/>
+
     <delete file="conf/keystore.jks"/>
-    <exec executable="openssl" inputstring="" output="/tmp/openxades.cert">
+    <exec executable="openssl" inputstring="" output="${tmpdir}/openxades.cert">
       <arg line="s_client -showcerts -connect www.openxades.org:8443"/>
     </exec>
     <exec executable="openssl" inputstring="">
-      <arg line="x509 -outform der -in /tmp/openxades.cert -out /tmp/openxades.der"/>
+      <arg line="x509 -outform der -in ${tmpdir}/openxades.cert -out ${tmpdir}/openxades.der"/>
     </exec>
     <!--<exec executable="keytool" inputstring="">
       <arg line="-delete -alias openxades -keystore keystore.jks -storepass changeit"/>
     </exec>-->
     <exec executable="keytool" inputstring="yes">
-      <arg line="-importcert -alias openxades -file /tmp/openxades.der -keystore conf/keystore.jks -trustcacerts -storepass changeit"/>
+      <arg line="-importcert -alias openxades -file ${tmpdir}/openxades.der -keystore conf/keystore.jks -trustcacerts -storepass changeit"/>
     </exec>
+
+    <delete dir="${tmpdir}"/>
   </target>
 
 </project>
